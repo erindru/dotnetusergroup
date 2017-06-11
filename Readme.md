@@ -8,18 +8,20 @@
 	- NodeJS module system
 	- NodeJS web framework - express.js
 	- Testing a NodeJS app
-		docker-compose run --rm node
-		`npm install express`
-		`npm install express --save`
-		Show hello, world
-		Change to hello dotnet user group
-		Refresh - still hello, world
-		restart - refresh
-		add test for parameter
-		npm install mocha chai chai-http --save-dev
-		Show mocha/chai in devDependencies
-		run tests - watch failure
-		Fix code and rerun tests
+
+		- docker-compose run --rm node
+		- `npm install express`
+		- `npm install express --save`
+		- Show hello, world
+		- Change to hello dotnet user group
+		- Refresh - still hello, world
+		- restart - refresh
+		- add test for parameter
+		- npm install mocha chai chai-http --save-dev
+		- Show mocha/chai in devDependencies
+		- run tests - watch failure
+		- Fix code and rerun tests
+		
 	- build docker image and show running
 
 3. Dotnet Core
