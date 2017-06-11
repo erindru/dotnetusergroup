@@ -1,0 +1,11 @@
+version: "2"
+services:
+  node:
+    build: .
+    network_mode: host
+    tty: true
+    user: "1000"
+    working_dir: /code
+    volumes:
+      - ".:/code"
+    entrypoint: /bin/bash

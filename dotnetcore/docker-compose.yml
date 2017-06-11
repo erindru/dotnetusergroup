@@ -1,0 +1,21 @@
+version: "2"
+services:
+    vscode:
+      build:
+        context: .
+        dockerfile: Dockerfile-dev
+      environment:
+        - DISPLAY=unix${DISPLAY}
+        - ASPNETCORE_ENVIRONMENT=Development
+        - ASPNETCORE_URLS=http://0.0.0.0:3000/
+        - LOCAL_USER_ID=1000
+      network_mode: host
+      working_dir: /code
+      volumes:
+        - /tmp/.X11-unix:/tmp/.X11-unix
+        - .:/code
+        - vscode:/home/user
+        - ./entrypoint.sh:/entrypoint.sh
+
+volumes:
+  vscode:

@@ -1,0 +1,22 @@
+FROM fedora:24
+
+WORKDIR /opt
+
+RUN rpm --import https://packages.microsoft.com/keys/microsoft.asc \
+	&& sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo' \
+	&& dnf -y update \
+	&& dnf -y install libunwind libicu code tar which \
+	&& dnf clean all
+
+RUN curl -sSL -o dotnet.tar.gz https://dotnetcli.blob.core.windows.net/dotnet/Sdk/2.0.0-preview1-005977/dotnet-dev-linux-x64.2.0.0-preview1-005977.tar.gz \
+	&& mkdir dotnet \
+	&& tar zxf dotnet.tar.gz -C dotnet \
+	&& rm dotnet.tar.gz \
+	&& ln -s /opt/dotnet/dotnet /usr/local/bin
+	
+RUN curl -L -o /bin/gosu https://github.com/tianon/gosu/releases/download/1.10/gosu-amd64 \
+	&& chmod +x /bin/gosu
+
+COPY entrypoint.sh /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
